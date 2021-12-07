@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/**/*.ts",
+    "src/typings/custom.d.ts",
+    ".eslintrc.js",
+    "gulpfile.json"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

@@ -1,0 +1,10 @@
+# Ignore artifacts:
+dist
+coverage
+node_modules
+package.json
+yarn.lock
+tsconfig.json
+tsconfig.eslint.json
+# Ignore folder
+src/styles/icon

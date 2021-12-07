@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "declaration": false,
+    "esModuleInterop": true,
+    "lib": ["es5", "dom", "es6", "es7"],
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "target": "esNext",
+    "jsx": "react",
+    "baseUrl": "./src",
+    "strictNullChecks": true,
+    "strictFunctionTypes": false,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strict": true,
+    "downlevelIteration": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "paths": {
+      "@components/*": ["app/components/*"],
+      "@app/*": ["app/*"],
+      "@assets/*": ["assets/*"],
+      "@utils/*": ["utils/*"],
+      "@lib/*": ["lib/*"],
+      "@actions/*": ["actions/*"],
+      "@styles/*": ["styles/*"],
+      "@routes/*": ["routes/*"]
+    },
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules",
+        "customMatcher": "\\.m\\.(c|sa|sc)ss$"
+      }
+    ]
+  },
+  "compileOnSave": false,
+  "include": ["src/**/*", "typings.d.ts", "custom.d.ts"],
+  "exclude": ["**/node_modules/**/*", "**/*.spec.ts", "**.js"]
+}

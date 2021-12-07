@@ -1,0 +1,7 @@
+/node_modules
+/build
+/dll
+gulpfile.js
+jest.after.ts
+jest.before.ts
+jest.config.ts
