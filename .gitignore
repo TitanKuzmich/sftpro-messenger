@@ -6,6 +6,7 @@ static
 .module-cache
 tsbuild
 *.log*
+yarn.lock
 _nogit
 build
 coverage
