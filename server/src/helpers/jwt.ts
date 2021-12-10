@@ -21,13 +21,13 @@ export const encrypt = (payload: JWT): string => {
 
 const getTimeStamp = () => Math.round(new Date().getTime() / 1000)
 
-export const createJWT = (userId: number, ttl: number = config.jwtTTL) =>
+export const createJWT = (userId: string, ttl: number = config.jwtTTL) =>
   encrypt({
     user_id: userId,
     expires_at: getTimeStamp() + ttl
   })
 
-export const createRefresh = (userId: number) =>
+export const createRefresh = (userId: string) =>
   encrypt({
     user_id: userId,
     expires_at: getTimeStamp() + config.refreshTokenTTL

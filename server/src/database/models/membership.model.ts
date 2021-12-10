@@ -1,9 +1,9 @@
 import { model, Schema } from "mongoose"
 
-import {MembershipInterface} from "@interfaces/models/membership.interface"
+import {MembershipModel} from "@interfaces/models/membership.interface"
 
 
-const MembershipSchema = new Schema<MembershipInterface>({
+const MembershipSchema = new Schema<MembershipModel>({
   userId: {
     type: Schema.Types.ObjectId,
     ref: 'user',
@@ -18,4 +18,4 @@ const MembershipSchema = new Schema<MembershipInterface>({
   }
 });
 
-export const MembershipModel= model<MembershipInterface>('membership', MembershipSchema)
+export const Membership= model<MembershipModel>('membership', MembershipSchema)

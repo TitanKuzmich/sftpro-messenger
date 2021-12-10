@@ -1,8 +1,8 @@
 import { model, Schema } from "mongoose"
 
-import {MessageInterface} from "@interfaces/models/message.interface"
+import {MessageModel} from "@interfaces/models/message.interface"
 
-const MessageSchema = new Schema<MessageInterface>({
+const MessageSchema = new Schema<MessageModel>({
   userId: {
     type: Schema.Types.ObjectId,
     ref: 'user',
@@ -24,4 +24,4 @@ const MessageSchema = new Schema<MessageInterface>({
   ]
 }, {timestamps: true})
 
-export const MessageModel = model<MessageInterface>('message', MessageSchema)
+export const Message = model<MessageModel>('message', MessageSchema)

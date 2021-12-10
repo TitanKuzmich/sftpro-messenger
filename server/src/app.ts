@@ -38,7 +38,7 @@ app.use(helmet() as express.RequestHandler)
 // enable CORS - Cross Origin Resource Sharing
 app.use(cors())
 
-app.use(`/api/site/${config.apiVersion}/`, siteRoutes)
+app.use(`/api/${config.apiVersion}/`, siteRoutes)
 
 app.use("/api/admin/health-check", (req: express.Request, res: express.Response) => {
   res.json({ success: true })

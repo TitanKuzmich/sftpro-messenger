@@ -1,8 +1,8 @@
 import {model, Schema} from "mongoose"
 
-import {EmoticonInterface} from "@interfaces/models/emoticon.interface"
+import {EmoticonModel} from "@interfaces/models/emoticon.interface"
 
-const EmoticonSchema = new Schema<EmoticonInterface>({
+const EmoticonSchema = new Schema<EmoticonModel>({
   userId: {
     type: Schema.Types.ObjectId,
     ref: 'user',
@@ -21,4 +21,4 @@ const EmoticonSchema = new Schema<EmoticonInterface>({
   },
 });
 
-export const EmoticonModel = model<EmoticonInterface>('emoticon', EmoticonSchema)
+export const Emoticon = model<EmoticonModel>('emoticon', EmoticonSchema)

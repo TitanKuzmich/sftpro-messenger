@@ -1,10 +1,13 @@
 import {Schema} from "mongoose"
 
-import {Emoticon} from "@interfaces/models/emoticon.interface"
+import {EmoticonModel} from "@interfaces/models/emoticon.interface"
 
-export interface MessageInterface {
+export interface MessageAttributes {
   userId: string | Schema.Types.ObjectId
   channelId: string | Schema.Types.ObjectId
   content: string
-  emoticons: Array<Partial<Emoticon>>
+  emoticons: Array<Partial<EmoticonModel>>
 }
+
+
+export interface MessageModel extends Schema, MessageAttributes {}

@@ -1,9 +1,11 @@
-import { Request, Response, NextFunction } from "express"
+import {Request, Response, NextFunction} from "express"
 import httpStatus from "http-status"
-// import { getUserById } from "@services/users.service"
-import { decrypt } from "@helpers/jwt"
-import { httpError } from "@helpers/errors"
-import { DB } from "@root/database/entity"
+
+import {DB} from "@root/database/entity"
+import {getUserById} from "@root/api/components/user/user.service"
+
+import {decrypt} from "@helpers/jwt"
+import {httpError} from "@helpers/errors"
 
 const ERROR_MESSAGE = "Auth error"
 
@@ -25,17 +27,14 @@ export const auth = async (req: Request, res: Response, next: NextFunction) => {
       return httpError(res, ERROR_MESSAGE, httpStatus.UNAUTHORIZED)
     }
 
-  await fetch('http://google.com',)
-    console.log(result)
-    // const userData = await getUserById(result.user_id)
+    const userData = await getUserById(result.user_id)
 
-    // if (!userData || !userData.id || (userData.is_active && userData.is_blocked)) {
-    //   return httpError(res, ERROR_MESSAGE, httpStatus.UNAUTHORIZED)
-    // }
-    //
-    // req.acl = await getAcl(userData.id)
-    //
-    // req.user = userData
+    if (!userData || !userData._id) {
+      return httpError(res, ERROR_MESSAGE, httpStatus.UNAUTHORIZED)
+    }
+
+
+    req.user = userData
   } catch (error) {
     return httpError(res, ERROR_MESSAGE, httpStatus.UNAUTHORIZED)
   }

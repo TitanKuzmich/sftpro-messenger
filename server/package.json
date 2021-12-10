@@ -17,7 +17,7 @@
     "cli": "ts-node --files src/utils/cli/index.ts",
     "socket": "ts-node --files src/socket/server.ts",
     "type": "tsc --project tsconfig.json --noEmit",
-    "seed:test": "cross-env NODE_ENV=test ts-node --transpile-only --files src/database/seeder.ts",
+    "seed:test": "cross-env NODE_ENV=test ts-node --files src/database/seeder.ts",
     "test": "cross-env NODE_ENV=test jest --forceExit --detectOpenHandles --testTimeout=10000",
     "test:watch": "cross-env NODE_ENV=test jest --watch",
     "test:coverage": "cross-env NODE_ENV=test jest --coverage"
@@ -44,7 +44,9 @@
     "supertest": "^6.1.6",
     "ts-jest": "^27.0.5",
     "ts-node": "^10.2.1",
-    "typescript": "^4.4.2"
+    "tsconfig-paths": "^3.12.0",
+    "typescript": "^4.4.2",
+    "typescript-transform-paths": "^3.3.1"
   },
   "dependencies": {
     "@types/compression": "^1.7.1",

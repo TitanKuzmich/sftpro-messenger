@@ -1,4 +1,11 @@
 {
+  "ts-node": {
+    "transpileOnly": true,
+    "require": [                              /* set this so you dont need to use ts-node -r */
+      "typescript-transform-paths/register",
+      "tsconfig-paths/register"
+    ]
+  },
   "compilerOptions": {
     "baseUrl": "./src",
     /* Basic Options */

@@ -1,32 +1,30 @@
 import { model, Schema } from "mongoose"
 
-import {UserInterface} from "@interfaces/models/user.interface"
+import {UserModel} from "@interfaces/models/user.interface"
+import {string} from "joi"
 
-const mongoose = require('mongoose')
-const bcrypt = require('bcrypt')
+const UserSchema = new Schema<UserModel>({
 
-const UserSchema = new Schema<UserInterface>({
   username: {
     type: String,
     required: true,
     unique: true
   },
 
-  password: {
+  crypted_password: {
     type: String,
+    required: true
+  },
+
+  salt: {
+    type: String,
+    field: "salt",
     required: true
   },
 
   aviUrl: {
     type: String
   }
-})
-
-UserSchema.pre('save', function(this: any, next: any) {
-  if (!this.isModified('password')) return next()
-
-  this.password = this.encryptPassword(this.password)
-  next()
 })
 
 UserSchema.pre('save', function(this: any, next: any){
@@ -47,24 +45,4 @@ UserSchema.pre('save', function(this: any, next: any){
   next()
 })
 
-UserSchema.methods = {
-  authenticate: function(plainTextPword: any) {
-    return bcrypt.compareSync(plainTextPword, this.password);
-  },
-  encryptPassword: function(plainTextPword: any) {
-    if (!plainTextPword) {
-      return ''
-    } else {
-      const salt = bcrypt.genSaltSync(10);
-      return bcrypt.hashSync(plainTextPword, salt)
-    }
-  },
-  toJson: function() {
-    const obj = this.toObject()
-    delete obj.password
-    return obj
-  }
-}
-
-
-export const UserModel = model<UserInterface>('User', UserSchema)
+export const User = model<UserModel>('User', UserSchema)
