@@ -4,6 +4,7 @@
 node_modules
 static
 .module-cache
+.env
 tsbuild
 *.log*
 yarn.lock
