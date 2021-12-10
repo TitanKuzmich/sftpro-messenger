@@ -1,0 +1,42 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Wavix v1.1 API
+  license:
+    name: MIT
+servers:
+  - url: http://localhost:3000/api/site/v1.1
+  - url: https://app.wavix-dev.com/api/site/v1.1
+  - url: https://app.wavix.com/api/site/v1.1
+tags:
+  - name: Auth
+  - name: Number validation
+  - name: 2FA
+security:
+  - bearerAuth: []
+paths:
+  /auth:
+    $ref: "./components/auth/docs/auth.yaml"
+  /auth/update:
+    $ref: "./components/auth/docs/update.yaml"
+  /auth/signout:
+    $ref: "./components/auth/docs/signout.yaml"
+  /auth/captcha/verify:
+    $ref: "./components/auth/docs/verify.yaml"
+  /number-validation/:
+    $ref: "./components/number-validation/docs/number-validation.yaml"
+  /two-fa/:
+    $ref: "./components/two-fa/docs/two-fa.yaml"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  # parameters:
+  #   $ref: "./apidoc/parameters/index.yaml"
+  schemas:
+    $ref: "./openapi/schemas/index.yaml"
+  # responses:
+  #   $ref: "./apidoc/responses/index.yaml"
