@@ -1,3 +1,5 @@
+import UserSeed from "./user"
+
 export const orderSeeds = [
-  "user"
+  UserSeed
 ]

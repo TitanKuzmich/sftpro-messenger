@@ -1,7 +1,6 @@
 import { model, Schema } from "mongoose"
 
 import {UserModel} from "@interfaces/models/user.interface"
-import {string} from "joi"
 
 const UserSchema = new Schema<UserModel>({
 

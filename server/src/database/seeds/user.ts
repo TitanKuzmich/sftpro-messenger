@@ -1,3 +1,5 @@
+import { User } from "@database/models/user.model"
+
 const users = [
   {
     username: 'tiSai',
@@ -26,6 +28,6 @@ const users = [
 ]
 
 export default {
-  model: "User",
+  model: User,
   data: users
 }
