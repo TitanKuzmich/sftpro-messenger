@@ -3,7 +3,6 @@ import { model, Schema } from "mongoose"
 import {UserModel} from "@interfaces/models/user.interface"
 
 const UserSchema = new Schema<UserModel>({
-
   username: {
     type: String,
     required: true,
