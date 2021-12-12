@@ -1,12 +1,32 @@
 import httpStatus from "http-status"
 import ApiError from "@helpers/api-error"
-import {DB} from "@database/entity"
+import { DB } from "@database/entity"
 
-import {DBResponse} from "@interfaces/db";
-import {UserModel} from "@interfaces/models/user.interface"
+import { DBResponse } from "@interfaces/db"
+import { UserModel } from "@interfaces/models/user.interface"
 
-export const getUserById = async (id: number): DBResponse<UserModel> => {
-  if (!id) throw new ApiError("User does not exists", httpStatus.INTERNAL_SERVER_ERROR)
 
-  return await DB.User.findOne({where: { _id: id } })
+class UserService {
+  public userModel = DB.User
+
+  public async getUserById(id: string): DBResponse<UserModel> {
+    if (!id) throw new ApiError("User does not exists", httpStatus.INTERNAL_SERVER_ERROR)
+
+    return await this.userModel.findOne({ where: { _id: id } })
+  }
+
+  public async editUser(id: string, payload: UserModel): DBResponse<UserModel> {
+    const updatedUser = await this.userModel.findOne({ where: { _id: id } })
+
+    if (!updatedUser) {
+      return null
+    }
+
+    await updatedUser.update(payload)
+    await updatedUser.save()
+
+    return updatedUser
+  }
 }
+
+export default UserService
