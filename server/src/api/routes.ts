@@ -5,6 +5,7 @@ import userRoutes from "./components/user/user.route"
 import emoticonRoutes from "./components/emoticon/emoticon.route"
 import membershipRoutes from "./components/membership/membership.route"
 import messageRoutes from "./components/message/message.route"
+import channelsRoutes from "./components/channels/channels.route"
 
 class SiteRoute implements Routes {
   public router = Router()
@@ -19,6 +20,7 @@ class SiteRoute implements Routes {
     this.router.use('/emoticon', emoticonRoutes)
     this.router.use('/membership', membershipRoutes)
     this.router.use('/messages', messageRoutes)
+    this.router.use('/channels', channelsRoutes)
   }
 }
 
