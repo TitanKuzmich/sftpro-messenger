@@ -9,10 +9,10 @@ class UserController extends ControllerBase {
   public userService = new UserService()
 
   public edit = async (req: Request, res: Response) => {
-    const { id } = req.params
+    const { userId } = req.params
     const payload = req.body
 
-    const response = await this.userService.editUser(id, payload)
+    const response = await this.userService.editUser(userId, payload)
 
     if (response && response._id) {
       return res.json({ updatedId: response._id })
@@ -28,15 +28,15 @@ class UserController extends ControllerBase {
   }
 
   public getOne = async (req: Request, res: Response) => {
-    const { id } = req.params
+    const { userId } = req.params
 
-    if (!id) {
+    if (!userId) {
       return this.httpError(res, "Invalid user ID", httpStatus.BAD_REQUEST)
     }
 
-    const response = await this.userService.getUserById(id)
+    const response = await this.userService.getUserById(userId)
 
-    return res.json(response)
+    return res.json({userId, response})
   }
 }
 

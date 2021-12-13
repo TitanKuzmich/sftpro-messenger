@@ -6,19 +6,20 @@ import { Routes } from "@interfaces/routes"
 
 class MessageRoute implements Routes {
   public router = Router()
-  public userController = new MessageController()
+  public messageController = new MessageController()
 
   constructor() {
     this.initializeRoutes()
   }
 
   private initializeRoutes() {
-    this.router.get("/", auth, this.userController.getAll)
-    this.router.post("/", auth, this.userController.postMessage)
+    this.router.get("/", auth, this.messageController.getAll)
+    this.router.get("/:messageId", auth, this.messageController.getOne)
 
-    this.router.get("/:id", auth, this.userController.getOne)
-    this.router.patch("/edit", auth, this.userController.edit)
-    this.router.delete("/edit", auth, this.userController.deleteMessage)
+    this.router.post("/", auth, this.messageController.postMessage)
+
+    this.router.delete("/:messageId", auth, this.messageController.deleteMessage)
+    this.router.patch("/edit:messageId", auth, this.messageController.edit)
   }
 }
 

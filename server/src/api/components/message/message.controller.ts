@@ -22,21 +22,21 @@ class MessageController extends ControllerBase {
   }
 
   public getOne = async (req: Request, res: Response) => {
-    const { id } = req.params
+    const { messageId } = req.params
 
-    if (!id) {
+    if (!messageId) {
       return this.httpError(res, "Invalid message ID", httpStatus.BAD_REQUEST)
     }
 
-    const response = await this.messageService.getMessageById(id)
+    const response = await this.messageService.getMessageById(messageId)
 
     return res.json(response)
   }
 
   public edit = async (req: Request, res: Response) => {
-    const { _id: id, payload } = req.body
+    const { messageId, payload } = req.body
 
-    const response = await this.messageService.editMessage(id, payload)
+    const response = await this.messageService.editMessage(messageId, payload)
 
     if (response && response._id) {
       return res.json({ updatedId: response._id })
@@ -46,9 +46,9 @@ class MessageController extends ControllerBase {
   }
 
   public deleteMessage = async (req: Request, res: Response) => {
-    const { _id } = req.body
+    const { messageId } = req.params
 
-    const response = await DB.Message.findByIdAndDelete({ _id })
+    const response = await DB.Message.findByIdAndDelete({ messageId })
 
     if (response) {
       return res.json({ deletedId: response })

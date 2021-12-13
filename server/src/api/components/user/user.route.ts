@@ -1,8 +1,9 @@
 import { Router } from "express"
-import UserController from "./user.controller"
 import { auth } from "@root/api/middlewares/auth"
 
 import { Routes } from "@interfaces/routes"
+
+import UserController from "./user.controller"
 
 class UserRoute implements Routes {
   public router = Router()
@@ -14,8 +15,8 @@ class UserRoute implements Routes {
 
   private initializeRoutes() {
     this.router.get("/", auth, this.userController.getAll)
-    this.router.get("/:id", auth, this.userController.getOne)
-    this.router.patch("/edit", auth, this.userController.edit)
+    this.router.get("/:userId", auth, this.userController.getOne)
+    this.router.patch("/edit/:userId", auth, this.userController.edit)
   }
 }
 
