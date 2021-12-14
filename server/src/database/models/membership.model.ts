@@ -18,4 +18,4 @@ const MembershipSchema = new Schema<MembershipModel>({
   }
 });
 
-export const Membership= model<MembershipModel>('membership', MembershipSchema)
+export const Membership= model<MembershipModel>('Membership', MembershipSchema)

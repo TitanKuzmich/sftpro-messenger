@@ -21,4 +21,4 @@ const EmoticonSchema = new Schema<EmoticonModel>({
   },
 });
 
-export const Emoticon = model<EmoticonModel>('emoticon', EmoticonSchema)
+export const Emoticon = model<EmoticonModel>('Emoticon', EmoticonSchema)

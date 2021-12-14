@@ -1,8 +1,8 @@
 import {model, Schema} from "mongoose"
 
-import {EmoticonModel} from "@interfaces/models/channel.interface"
+import {ChannelModel} from "@interfaces/models/channel.interface"
 
-const ChannelSchema = new Schema<EmoticonModel>({
+const ChannelSchema = new Schema<ChannelModel>({
   name: {
     type: String,
     required: true,
@@ -15,4 +15,4 @@ const ChannelSchema = new Schema<EmoticonModel>({
   }
 });
 
-export const Channel = model<EmoticonModel>('channel', ChannelSchema)
+export const Channel = model<ChannelModel>('Channel', ChannelSchema)
