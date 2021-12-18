@@ -21,13 +21,13 @@ class ChannelService {
   }
 
   public async createChannel(payload: ChannelModel, userIds: Array<string>): DBResponse<ChannelModel> {
-    const newChannel = await this.channelModel.create(payload)
+    const newChannel = await this.channelModel.create({...payload})
     await newChannel.save()
 
     if (userIds) {
       const channelId = newChannel._id
 
-      userIds.forEach(async (id) => {
+      userIds.map(async (id) => {
         await this.membershipModel.create({ userId: id, channelId: channelId})
       })
     }

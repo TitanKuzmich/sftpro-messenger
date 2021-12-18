@@ -16,22 +16,21 @@ class ChannelsController extends ControllerBase {
   }
 
   public createChannel = async (req: Request, res: Response) => {
-    const newChannel = req.body
-    const userIds = req.body.userIds
+    const {channel, userIds } = req.body
 
-    const createdChannel = await this.channelService.createChannel(newChannel, userIds)
+    const createdChannel = await this.channelService.createChannel(channel, userIds)
 
     return res.json(createdChannel)
   }
 
   public getOne = async (req: Request, res: Response) => {
-    const { messageId } = req.params
+    const { channelId } = req.params
 
-    if (!messageId) {
+    if (!channelId) {
       return this.httpError(res, "There is no channel with that ID", httpStatus.BAD_REQUEST)
     }
 
-    const response = await this.channelService.getChannelById(messageId)
+    const response = await this.channelService.getChannelById(channelId)
 
     return res.json(response)
   }
@@ -39,8 +38,8 @@ class ChannelsController extends ControllerBase {
   public deleteChannel = async (req: Request, res: Response) => {
     const { channelId } = req.params
 
-    const deletedChannel = await this.channelModel.findByIdAndDelete({ channelId })
-    const deletedMembership = await DB.Membership.findByIdAndDelete({ channelId })
+    const deletedChannel = await this.channelModel.findByIdAndDelete({ _id: channelId })
+    const deletedMembership = await DB.Membership.findOneAndDelete({ channelId: channelId })
 
     if (deletedChannel && deletedMembership) {
       return res.json({ deletedChannel, deletedMembership })

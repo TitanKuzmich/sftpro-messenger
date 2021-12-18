@@ -6,13 +6,13 @@ import {MembershipModel} from "@interfaces/models/membership.interface"
 const MembershipSchema = new Schema<MembershipModel>({
   userId: {
     type: Schema.Types.ObjectId,
-    ref: 'user',
+    ref: 'User',
     required: true,
     index: true
   },
   channelId: {
     type: Schema.Types.ObjectId,
-    ref: 'channel',
+    ref: 'Channel',
     required: true,
     index: true
   }

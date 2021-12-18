@@ -5,13 +5,13 @@ import {MessageModel} from "@interfaces/models/message.interface"
 const MessageSchema = new Schema<MessageModel>({
   userId: {
     type: Schema.Types.ObjectId,
-    ref: 'user',
+    ref: 'User',
     index: true,
     required: true
   },
   channelId: {
     type: Schema.Types.ObjectId,
-    ref: 'channel',
+    ref: 'Channel',
     index: true,
     required: true
   },

@@ -19,7 +19,7 @@ class MessageRoute implements Routes {
     this.router.post("/", auth, this.messageController.postMessage)
 
     this.router.delete("/:messageId", auth, this.messageController.deleteMessage)
-    this.router.patch("/edit:messageId", auth, this.messageController.edit)
+    this.router.patch("/edit/:messageId", auth, this.messageController.edit)
   }
 }
 

@@ -4,7 +4,7 @@ import { sendToWS } from "@root/socket/client"
 // import { getUserById } from "@services/users.service"
 // import { getUnreadRepliesByEmail } from "@services/freshdesk.service"
 
-export const processEvent = (userId: number, event: SocketEvent) => {
+export const processEvent = (userId: string, event: SocketEvent) => {
   // switch (event.type) {
   //   case "support.customer.reply":
   //     return supportActions.customerReply(userId, event)
@@ -14,7 +14,7 @@ export const processEvent = (userId: number, event: SocketEvent) => {
   // }
 }
 
-export const userConnectHook = async (userId: number) => {
+export const userConnectHook = async (userId: string) => {
   // const user = await getUserById(userId)
 
   // if (!user) {

@@ -1,7 +1,6 @@
 import {Request, Response, NextFunction} from "express"
 import httpStatus from "http-status"
 
-import {DB} from "@root/database/entity"
 import UserService from "@root/api/components/user/user.service"
 
 import {decrypt} from "@helpers/jwt"

@@ -39,7 +39,7 @@ class MessageController extends ControllerBase {
     const response = await this.messageService.editMessage(messageId, payload)
 
     if (response && response._id) {
-      return res.json({ updatedId: response._id })
+      return res.json({ updatedMessage: response })
     }
 
     return res.json({ success: false, message: "Message does not exists" })
@@ -48,10 +48,10 @@ class MessageController extends ControllerBase {
   public deleteMessage = async (req: Request, res: Response) => {
     const { messageId } = req.params
 
-    const response = await DB.Message.findByIdAndDelete({ messageId })
+    const response = await DB.Message.findByIdAndDelete({ _id: messageId })
 
     if (response) {
-      return res.json({ deletedId: response })
+      return res.json({ deletedId: response._id })
     }
 
     return res.json({ success: false, message: "Something went wrong" })

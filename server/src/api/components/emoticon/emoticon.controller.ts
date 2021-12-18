@@ -11,10 +11,6 @@ class EmoticonController extends ControllerBase {
   public getEmoticon = async (req: Request, res: Response) => {
     const emoticons = await DB.Emoticon.find({})
 
-    if(!emoticons) {
-      return this.httpError(res, "Something went wrong", httpStatus.BAD_REQUEST)
-    }
-
     return res.json(emoticons)
   }
 

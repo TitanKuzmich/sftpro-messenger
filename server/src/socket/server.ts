@@ -30,11 +30,14 @@ io.on("connection", socket => {
   const userData = decrypt(token)
 
   if (userData) {
-    const userId = userData.user_id
+    const userId: string = userData.user_id
 
+    // @ts-ignore
     if (!sessions[userId]) {
+      // @ts-ignore
       sessions[userId] = [userSocketId]
     } else {
+      // @ts-ignore
       sessions[userId].push(userSocketId)
     }
   }

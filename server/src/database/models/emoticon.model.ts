@@ -5,13 +5,13 @@ import {EmoticonModel} from "@interfaces/models/emoticon.interface"
 const EmoticonSchema = new Schema<EmoticonModel>({
   userId: {
     type: Schema.Types.ObjectId,
-    ref: 'user',
+    ref: 'User',
     index: true,
     required: true
   },
   messageId: {
     type: Schema.Types.ObjectId,
-    ref: 'message',
+    ref: 'Message',
     index: true,
     required: true
   },
