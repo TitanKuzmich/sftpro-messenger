@@ -25,17 +25,17 @@ class AuthController extends ControllerBase {
     }
 
     const token = createJWT(user._id)
+    const token_ttl = 900
 
     if (!token) {
       return this.httpError(res, "Invalid email or password", httpStatus.UNAUTHORIZED)
     }
 
-    return res.json(token)
+    return res.json({token, token_ttl})
   }
 
   public register = async (req: Request, res: Response) => {
     const { username, password } = req.body
-
     const exist = await DB.User.findOne({ username: username})
 
     if(exist) {

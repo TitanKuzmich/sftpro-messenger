@@ -2,13 +2,8 @@ import React from "react"
 import { BrowserRouter } from "react-router-dom"
 import { Provider } from "react-redux"
 import ReactDOM from "react-dom"
-import config from "config"
-import InitialRouting from "app/sections/App/InitialRouting"
 import store from "state/store"
-import fonts from "assets/fonts/fonts"
-
-import "url-search-params-polyfill"
-import "./styles/index.scss"
+import InitialRouting from "@app/App/InitialRouting"
 
 const renderApp = () => {
   const target = document.getElementById("root")
@@ -34,7 +29,6 @@ const renderApp = () => {
   // Insert font separated from components to prevent blinking
   const head = document.getElementsByTagName("head")[0]
   const style = document.createElement("style")
-  style.innerHTML = fonts
   head.appendChild(style)
 }
 
