@@ -1,5 +1,5 @@
 import React, { FC, useContext, useEffect, useRef, useState } from "react"
-import faker from 'faker'
+import faker from "faker"
 import API from "@lib/api"
 import { LoginContext } from "@app/App/InitialRouting"
 import { removeTokens, setToken } from "@lib/helper"
@@ -16,10 +16,10 @@ type AuthStateProps = {
 
 const Auth: FC = () => {
   const [formData, setFormData] = useState<AuthStateProps>({
-      username: "",
-      password: "",
-      confirmPassword: ""
-    })
+    username: "",
+    password: "",
+    confirmPassword: ""
+  })
   const [errors, setErrors] = useState<ErrorsData>({})
   const [isLoading, setLoading] = useState(false)
   const [haveAccount, setHaveAccount] = useState(false)
@@ -30,35 +30,37 @@ const Auth: FC = () => {
   const { onLoginStateChange } = useContext(LoginContext)
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({...formData, [e.target.name]: e.target.value})
+    setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
   const demoLogin = async () => {
     const timeout = 50
-    const username = faker.name.firstName().toLowerCase().split('')
-    const password = faker.internet.password().split('')
+    const username: Array<string> = "richard".split("")
+    const password: Array<string> = "richard".split("")
+    let newVal: Array<string> = []
+
+    const usernameInput = usernameRef && usernameRef.current
+    const passwordInput = passwordRef && passwordRef.current
 
     const slowUserInput = setInterval(() => {
-      const usernameInput = usernameRef && usernameRef.current
-      const oldVal = usernameInput?.value
-      setFormData({...formData, username: oldVal + username.shift()})
+      newVal.push(usernameInput && usernameInput.value + username.shift() || "")
+      setFormData({ ...formData, username: newVal.join("") })
 
-      if (username.length === 0){
-        clearInterval(slowUserInput)
+      if (username.length === 0) {
+        window.clearInterval(slowUserInput)
+        newVal.length = 0
 
         const slowPassInput = setInterval(() => {
-          const passwordInput = passwordRef && passwordRef.current
-          const oldPassVal = passwordInput?.value
-          setFormData({...formData, username: oldPassVal + password.shift()})
+          newVal.push(passwordInput && passwordInput.value + username.shift() || "")
+          setFormData({ ...formData, password: newVal.join("") })
 
-          if (password.length === 0){
-            clearInterval(slowPassInput);
-          }
+          if (password.length === 0) {
+            window.clearInterval(slowPassInput)
+            newVal = []
 
-          if (username.length === 0 && password.length === 0){
-            onSubmit()
+            if (username.length === 0 && password.length === 0) onSubmit()
           }
-        }, timeout);
+        }, timeout)
       }
     }, timeout)
   }
@@ -74,7 +76,7 @@ const Auth: FC = () => {
 
     setLoading(true)
 
-    if(!haveErrors) {
+    if (!haveErrors) {
       delete formData.confirmPassword
 
       const url = haveAccount ? config.paths.auth : config.paths.register
@@ -104,18 +106,22 @@ const Auth: FC = () => {
   return (
     <section className="splash-container">
       <div className="splash-wrapper">
-        <img alt="Чат" src="https://res.cloudinary.com/tisai/image/upload/v1643539015/chat_yl7091.png"/>
+        <img alt="Чат" src="https://res.cloudinary.com/tisai/image/upload/v1643539015/chat_yl7091.png" />
         <h1 className="welcome-page-header">SFTPRO чат</h1>
         <h2 className="welcome-page-subheading">Место где происходит работа</h2>
         {errors && Object.values(errors).some(error => {
           return error.toString().length > 0
-        }) && <div className="error-message">{errors[Object.keys(errors)[0]]}</div>}
+        }) &&
+        <ul className="auth-signup-errors">
+          <li className="error-message">{errors[Object.keys(errors)[0]]}</li>
+        </ul>
+        }
 
         {haveAccount &&
-          <div
-            id="splash-guest-button"
-            className="splash-button"
-            onClick={demoLogin}>Гость</div>
+        <div
+          id="splash-guest-button"
+          className="splash-button"
+          onClick={demoLogin}>Гость</div>
         }
 
         <form className="auth-form" onSubmit={onSubmit}>
@@ -126,7 +132,7 @@ const Auth: FC = () => {
                  placeholder="Введите имя пользователя"
                  ref={usernameRef}
                  value={formData.username}
-                 onChange={onInputChange}/>
+                 onChange={onInputChange} />
           <label htmlFor="password">Пароль:</label>
           <input type="password"
                  name="password"
@@ -134,7 +140,7 @@ const Auth: FC = () => {
                  className="auth-pass-input"
                  ref={passwordRef}
                  value={formData.password}
-                 onChange={onInputChange}/>
+                 onChange={onInputChange} />
           {!haveAccount && <>
             <label htmlFor="confirmPassword">Подтвердите пароль:</label>
             <input
@@ -142,11 +148,11 @@ const Auth: FC = () => {
               name="confirmPassword"
               className="auth-pass-input"
               placeholder="Подтвердите пароль"
-              onChange={onInputChange}/>
+              onChange={onInputChange} />
           </>}
           {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
           <button
-            className="splash-button"
+            className="splash-button splash-button__form"
             type="submit"
             disabled={isLoading}
           >
@@ -155,10 +161,10 @@ const Auth: FC = () => {
         </form>
         {haveAccount ?
           <span className="auth-redirect-links">
-            Нужен аккаунт? <div onClick={() => setHaveAccount(false)}>Зарегистрируйтесь</div>
+            Нужен аккаунт? <span onClick={() => setHaveAccount(false)}>Зарегистрируйтесь</span>
           </span> :
           <span className="auth-redirect-links">
-            Уже есть аккаунт? <div onClick={() => setHaveAccount(true)}>Войдите</div>
+            Уже есть аккаунт? <span onClick={() => setHaveAccount(true)}>Войдите</span>
           </span>
         }
       </div>

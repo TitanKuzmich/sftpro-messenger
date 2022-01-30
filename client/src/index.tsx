@@ -5,6 +5,8 @@ import ReactDOM from "react-dom"
 import store from "state/store"
 import InitialRouting from "@app/App/InitialRouting"
 
+import "./styles/index.scss"
+
 const renderApp = () => {
   const target = document.getElementById("root")
   if (!target) return
