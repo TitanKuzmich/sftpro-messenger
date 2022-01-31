@@ -5,7 +5,7 @@ import { UserModel } from "@interfaces/models/user.interface"
 
 /*
   Run single test
-  yarn test -- src/api/components/user/user.test.ts
+  yarn test -- src/api/components/users/users.test.ts
 */
 
 const initId = "61b8a3e1bfef59eea19114b0"

@@ -31,7 +31,7 @@ class AuthController extends ControllerBase {
       return this.httpError(res, "Invalid email or password", httpStatus.UNAUTHORIZED)
     }
 
-    return res.json({token, token_ttl})
+    return res.json({token, token_ttl, user})
   }
 
   public register = async (req: Request, res: Response) => {
@@ -49,7 +49,7 @@ class AuthController extends ControllerBase {
       return this.httpError(res, "Invalid email or password", httpStatus.UNAUTHORIZED)
     }
 
-    return res.json(token)
+    return res.json({ token, newUser })
   }
 }
 

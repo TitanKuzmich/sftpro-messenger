@@ -1,6 +1,8 @@
 import React, { FC, useContext, useEffect, useRef, useState } from "react"
+import { useDispatch } from "react-redux"
 import config from "config"
 import API from "@lib/api"
+import * as actions from "state/actions/auth"
 import { removeTokens, setToken } from "@lib/helper"
 import { LoginContext } from "@app/App/InitialRouting"
 import { validateFormData } from "@app/Auth/helpers"
@@ -25,6 +27,8 @@ const Auth: FC = () => {
 
   const usernameRef = useRef<HTMLInputElement>(null)
   const passwordRef = useRef<HTMLInputElement>(null)
+
+  const dispatch = useDispatch()
 
   const { onLoginStateChange } = useContext(LoginContext)
 
@@ -77,6 +81,7 @@ const Auth: FC = () => {
 
     if (!haveErrors) {
       delete formData.confirmPassword
+      dispatch(actions.getCurrentUserRequest())
 
       const url = haveAccount ? config.paths.auth : config.paths.register
 
@@ -87,12 +92,14 @@ const Auth: FC = () => {
           const { token, token_ttl } = response.data
 
           setToken("token", token, { maxAge: token_ttl })
+          dispatch(actions.getCurrentUserSuccess(response.data.user))
           onLoginStateChange(true)
           setLoading(false)
         }
       } catch {
         setErrors({ username: "Что-то пошло не так, проверьте корректность заполненных полей" })
         setLoading(false)
+        dispatch(actions.getCurrentUserFail())
         removeTokens()
       }
     }

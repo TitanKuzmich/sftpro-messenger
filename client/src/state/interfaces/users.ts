@@ -4,7 +4,7 @@ export type UserPayload = {
   last_name: string
 }
 
-export type AuthState = {
+export type UsersState = {
   isLoading: boolean
-  user: UserPayload
+  users: Array<UserPayload>
 }

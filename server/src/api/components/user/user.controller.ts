@@ -31,7 +31,7 @@ class UserController extends ControllerBase {
     const { userId } = req.params
 
     if (!userId) {
-      return this.httpError(res, "Invalid user ID", httpStatus.BAD_REQUEST)
+      return this.httpError(res, "Invalid users ID", httpStatus.BAD_REQUEST)
     }
 
     const response = await this.userService.getUserById(userId)

@@ -3,6 +3,7 @@ export default {
   paths: {
     auth: "/auth",
     register: "/auth/new",
+    users: "/users"
   },
 
   formatDate: "MM.DD.YYYY",

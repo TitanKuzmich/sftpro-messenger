@@ -5,13 +5,11 @@ import { removeTokens } from "@lib/helper"
 import { State } from "state/store"
 import { LoginContext } from "@app/App/InitialRouting"
 import Logout from "@app/Logout"
-import Footer from '@app/Footer'
-
 
 const Sidebar: FC = () => {
   const navigate = useNavigate()
   const { onLoginStateChange } = useContext(LoginContext)
-  const { user } = useSelector((state: State) => state.user)
+  const { user } = useSelector((state: State) => state.auth)
 
   const signOut = async () => {
     removeTokens()
@@ -33,12 +31,7 @@ const Sidebar: FC = () => {
       </div>
       <ChannelList socket={socket}/>
       <footer id="sidebar-footer">
-        <p>Created by Hassan Toor</p>
-        <ul>
-          <li>
-            Created by Krivonos Aleksandr
-          </li>
-        </ul>
+        <p>Created by Krivonos Aleksandr</p>
       </footer>
     </div>
   )

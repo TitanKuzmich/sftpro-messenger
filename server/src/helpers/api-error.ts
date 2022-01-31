@@ -22,7 +22,7 @@ class ApiError extends ExtendableError {
    * Creates an API error.
    * @param {string} message - Error message.
    * @param {number} status - HTTP status code of error.
-   * @param {boolean} isPublic - Whether the message should be visible to user or not.
+   * @param {boolean} isPublic - Whether the message should be visible to users or not.
    */
   constructor(message: string, status = httpStatus.INTERNAL_SERVER_ERROR, isPublic = false) {
     super(message, status, isPublic)

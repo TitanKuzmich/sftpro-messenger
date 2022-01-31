@@ -5,7 +5,7 @@ import { AuthState } from "state/interfaces/auth"
 const defaultState: AuthState = {
   isLoading: true,
   user: {
-    email: "",
+    username: "",
     first_name: "",
     last_name: ""
   }

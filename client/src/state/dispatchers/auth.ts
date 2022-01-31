@@ -1,11 +1,8 @@
 import { Dispatch } from "redux"
 import * as actions from "state/actions/auth"
 import API from "lib/api"
-import config from "config"
 
-export const getCurrentUser = (action: string) => (dispatch: Dispatch) => {
-  const url = action === "login" ? config.paths.auth : config.paths.register
-
+export const getCurrentUser = (url: string) => (dispatch: Dispatch) => {
   dispatch(actions.getCurrentUserRequest())
   API.get(url, { params: { fallback: false } })
     .then(({ data }) => {

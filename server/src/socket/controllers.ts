@@ -15,15 +15,15 @@ export const processEvent = (userId: string, event: SocketEvent) => {
 }
 
 export const userConnectHook = async (userId: string) => {
-  // const user = await getUserById(userId)
+  // const users = await getUserById(userId)
 
-  // if (!user) {
+  // if (!users) {
   //   return
   // }
   //
-  // const unreadRepliesIds = await getUnreadRepliesByEmail(user.email)
+  // const unreadRepliesIds = await getUnreadRepliesByEmail(users.email)
   // sendToWS(userId, {
-  //   type: "user.config",
+  //   type: "users.config",
   //   payload: { id: userId, new_tickets_replies: unreadRepliesIds }
   // })
 }

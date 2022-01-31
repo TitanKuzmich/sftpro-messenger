@@ -3,7 +3,7 @@ import cn from "classnames"
 
 type Props = {
   signOut: () => void
-  user: User
+  users: User
 }
 
 const Logout: FC<Props> = ({ signOut, user }) => {
