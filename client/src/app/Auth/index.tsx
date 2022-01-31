@@ -1,12 +1,11 @@
 import React, { FC, useContext, useEffect, useRef, useState } from "react"
-import faker from "faker"
-import API from "@lib/api"
-import { LoginContext } from "@app/App/InitialRouting"
-import { removeTokens, setToken } from "@lib/helper"
 import config from "config"
+import API from "@lib/api"
+import { removeTokens, setToken } from "@lib/helper"
+import { LoginContext } from "@app/App/InitialRouting"
 import { validateFormData } from "@app/Auth/helpers"
-import rules from "@app/Auth/rules"
 import { ErrorsData } from "@app/Auth/types"
+import rules from "@app/Auth/rules"
 
 type AuthStateProps = {
   username: string

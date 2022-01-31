@@ -105,3 +105,15 @@ export const buildParams = (obj: Params, options?: ParamsOptions) => {
     .reduce((acc, key: string) => (obj[key] !== "" ? [...acc, paramToQueryString(key, obj[key])] : acc), [])
     .join("&")
 }
+
+export const selectChannels = (state: any, isPrivate: boolean) => {
+  return Object
+    .keys(state.channels.channels)
+    .map(key => state.channels.channels[key])
+    .filter(channel => channel.private === isPrivate)
+}
+
+export const selectMessages = (state: any) => {
+  // @ts-ignore
+  return Object.keys(state.messages.messages).map(key => state.messages.messages[key]).sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+}
