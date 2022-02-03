@@ -24,7 +24,7 @@ describe("Auth CRUD", () => {
       .send(payload)
       .expect(200)
       .then(response => {
-        const token = response.body
+        const { token } = response.body
 
         workingToken = token
 
@@ -45,7 +45,7 @@ describe("Auth CRUD", () => {
       .send(payload)
       .expect(200)
       .then(response => {
-        const token = response.body
+        const { token } = response.body
 
         expect(token).not.toBeNull()
 

@@ -7,7 +7,7 @@ import { createJWT } from "@helpers/jwt"
   yarn test -- src/api/components/channels/channels.test.ts
 */
 
-const initId = "61b8a3e1bfef59eea19114b0"
+const initId = "61fbb8ec07f6e8c00aef1630"
 const jwtToken = createJWT(initId)
 
 let channelId = ""
@@ -21,7 +21,7 @@ describe("Channel CRUD", () => {
         "private": true
       },
       "userIds": [
-        "61b8a3e1bfef59eea19114b0"
+        "61fbb8ec07f6e8c00aef1630"
       ]
     }
     await request(app)
@@ -43,7 +43,7 @@ describe("Channel CRUD", () => {
 
   it("Channels list", async () => {
     await request(app)
-      .get(`/api/v1.1/channels/`)
+      .get(`/api/v1.1/channels/${initId}`)
       .auth(jwtToken, { type: "bearer" })
       .expect(200)
       .then(response => {
@@ -59,7 +59,7 @@ describe("Channel CRUD", () => {
 
   it("Get Chat by ID", async () => {
     await request(app)
-      .get(`/api/v1.1/channels/${channelId}`)
+      .get(`/api/v1.1/channels/channel/${channelId}`)
       .auth(jwtToken, { type: "bearer" })
       .expect(200)
       .then(response => {

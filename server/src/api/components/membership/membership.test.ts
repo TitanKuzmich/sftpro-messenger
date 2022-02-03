@@ -7,7 +7,7 @@ import { createJWT } from "@helpers/jwt"
   yarn test -- src/api/components/membership/membership.test.ts
 */
 
-const initId = "61b8a3e1bfef59eea19114b0"
+const initId = "61fbb8ec07f6e8c00aef1630"
 const jwtToken = createJWT(initId)
 
 describe("Membership CRUD", () => {

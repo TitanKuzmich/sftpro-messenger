@@ -21,7 +21,7 @@ class UserService {
       return null
     }
 
-    await updatedUser.update(payload)
+    await updatedUser.updateOne({...payload})
     await updatedUser.save()
 
     return updatedUser

@@ -23,7 +23,10 @@ const initMessage = async () => {
       } = {
         channelId: channel._id,
         userId: users[i]._id,
-        content: "Hello from, " + users[i].username + "; to chat: " + channel.name + " " + (Math.random() + 1).toString(36).substring(7),
+        content: "Hello from, " + users[i].username + "; to chat: " + channel.name + " "
+          + (Math.random() + 1)
+          .toString(36)
+          .substring(7),
         emoticons: []
       }
 

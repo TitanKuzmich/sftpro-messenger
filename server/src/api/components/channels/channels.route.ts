@@ -15,7 +15,7 @@ class ChannelsRoute implements Routes {
   private initializeRoutes() {
     this.router.get("/:userId", auth, this.channelController.getAll)
     this.router.post("/", auth, this.channelController.createChannel)
-    this.router.get("/:channelId", auth, this.channelController.getOne)
+    this.router.get("/channel/:channelId", auth, this.channelController.getOne)
     this.router.delete("/:channelId", auth, this.channelController.deleteChannel)
 
     this.router.get("/users/:channelId", auth, this.channelController.getUsers)

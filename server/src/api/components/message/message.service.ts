@@ -34,7 +34,7 @@ class MessageService {
       return null
     }
 
-    await updatedMessage.update(payload)
+    await updatedMessage.updateOne({...payload})
     await updatedMessage.save()
 
     return updatedMessage

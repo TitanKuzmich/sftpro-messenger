@@ -7,9 +7,9 @@ import { createJWT } from "@helpers/jwt"
   yarn test -- src/api/components/message/message.test.ts
 */
 
-const initId = "61b8a3e1bfef59eea19114b0"
+const initId = "61fbb8ec07f6e8c00aef1630"
 const jwtToken = createJWT(initId)
-const channelId = "61b8a3e4bfef59eea19114bb"
+const channelId = "61fbb8ef07f6e8c00aef1639"
 
 let messageId = ""
 
@@ -48,7 +48,7 @@ describe("Message CRUD", () => {
 
     await request(app)
       .patch(`/api/v1.1/messages/edit/${messageId}`)
-      .send({messageId, payload})
+      .send(payload)
       .auth(jwtToken, { type: "bearer" })
       .expect(200)
       .then(response => {

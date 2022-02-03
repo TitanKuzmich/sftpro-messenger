@@ -34,7 +34,8 @@ class MessageController extends ControllerBase {
   }
 
   public edit = async (req: Request, res: Response) => {
-    const { messageId, payload } = req.body
+    const { messageId } = req.params
+    const payload = req.body
 
     const response = await this.messageService.editMessage(messageId, payload)
 
